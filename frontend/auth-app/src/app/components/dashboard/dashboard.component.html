@@ -1,0 +1,32 @@
+<div class="dashboard-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Dashboard</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <ng-container *ngIf="isLoading">
+        <!-- Skeleton loader -->
+        <div class="skeleton-loader">
+          <div class="skeleton-item"></div>
+          <div class="skeleton-item"></div>
+          <div class="skeleton-item"></div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="!isLoading && userData">
+        <div class="user-info">
+          <h2>Bienvenido, {{ userData.name }}</h2>
+          <p>Email: {{ userData.email }}</p>
+          <p>Último acceso: {{ userData.lastLogin | date:'medium' }}</p>
+        </div>
+      </ng-container>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="logout()">
+        Cerrar Sesión
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
