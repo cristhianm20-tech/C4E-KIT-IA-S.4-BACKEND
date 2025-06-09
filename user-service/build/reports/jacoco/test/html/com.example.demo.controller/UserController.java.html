@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">user-service</a> &gt; <a href="index.source.html" class="el_package">com.example.demo.controller</a> &gt; <span class="el_source">UserController.java</span></div><h1>UserController.java</h1><pre class="source lang-java linenums">package com.example.demo.controller;
+
+import com.example.demo.dto.UserDTO;
+import com.example.demo.entity.User;
+import com.example.demo.service.UserService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
+import java.util.List;
+import java.util.UUID;
+
+@RestController
+@RequestMapping(&quot;/api/v1/users&quot;)
+public class UserController {
+
+    private final UserService userService;
+
+<span class="fc" id="L21">    public UserController(UserService userService) {</span>
+<span class="fc" id="L22">        this.userService = userService;</span>
+<span class="fc" id="L23">    }</span>
+
+    @GetMapping
+    public ResponseEntity&lt;List&lt;User&gt;&gt; getAllUsers() {
+<span class="fc" id="L27">        return ResponseEntity.ok(userService.getAllUsers());</span>
+    }
+
+    @GetMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;User&gt; getUserById(@PathVariable UUID id) {
+<span class="fc" id="L32">        return ResponseEntity.ok(userService.getUserById(id));</span>
+    }
+
+    @PostMapping
+    public ResponseEntity&lt;User&gt; createUser(@Valid @RequestBody UserDTO userDTO) {
+<span class="fc" id="L37">        User createdUser = userService.createUser(userDTO);</span>
+        URI location = ServletUriComponentsBuilder
+<span class="fc" id="L39">                .fromCurrentRequest()</span>
+<span class="fc" id="L40">                .path(&quot;/{id}&quot;)</span>
+<span class="fc" id="L41">                .buildAndExpand(createdUser.getId())</span>
+<span class="fc" id="L42">                .toUri();</span>
+<span class="fc" id="L43">        return ResponseEntity.created(location).body(createdUser);</span>
+    }
+
+    @PutMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;User&gt; updateUser(@PathVariable UUID id, @Valid @RequestBody UserDTO userDTO) {
+<span class="fc" id="L48">        return ResponseEntity.ok(userService.updateUser(id, userDTO));</span>
+    }
+
+    @DeleteMapping(&quot;/{id}&quot;)
+    public ResponseEntity&lt;Void&gt; deleteUser(@PathVariable UUID id) {
+<span class="fc" id="L53">        userService.deleteUser(id);</span>
+<span class="fc" id="L54">        return ResponseEntity.noContent().build();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
