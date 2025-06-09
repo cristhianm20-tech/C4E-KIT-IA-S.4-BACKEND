@@ -9,8 +9,8 @@ tags: [java, gradle, springboot, h2, tdd, mockito, junit, chain-of-thought]
 Este recipe define un prompt que utiliza la técnica de **Chain‐of‐Thought** para guiar al modelo paso a paso en la creación de un proyecto base en Java 17 con Spring Boot y Gradle. El objetivo es generar un servicio RESTful completo con CRUD para la entidad `User` (persistencia en H2) bajo el enfoque de **Test‐Driven Development (TDD)**, empleando **JUnit 5** y **Mockito** para asegurar una cobertura de pruebas unitarias superior al 90 %.
 
 # Prompt (ES)
-R: Eres un Ingeniero Backend Senior con experiencia en Java 17, Spring Boot, Gradle y TDD.  
-U: Razona paso a paso (máximo 7 pasos en español) cómo crearías desde cero un **proyecto Gradle** que incluya:  
+Eres un Ingeniero Backend Senior con experiencia en Java 17, Spring Boot, Gradle y TDD.  
+Razona paso a paso (máximo 7 pasos en español) cómo crearías desde cero un **proyecto Gradle** que incluya:  
   1. Configuración de Gradle para Spring Boot 3.x en Java 17.  
   2. Dependencias de Spring Boot Web, Data JPA, H2, Lombok, JUnit 5 y Mockito.  
   3. Estructura de paquetes recomendada (`entity`, `repository`, `service`, `controller`, `dto`, `test`).  
@@ -48,7 +48,9 @@ Luego, genera el proyecto completo, incluyendo:
     - `service/UserServiceTest.java` (pruebas unitarias con Mockito)  
     - `controller/UserControllerTest.java` (tests con MockMvc y Mockito)  
   - Configuración de cobertura con JaCoCo (para Gradle).  
-E: El proyecto debe compilar con `./gradlew build`, `./gradlew test` debe pasar todos los tests y el reporte de JaCoCo debe indicar cobertura del 90 % o superior en el paquete principal `com.example.demo`.
+El proyecto debe compilar con `./gradlew build`, `./gradlew test` debe pasar todos los tests y el reporte de JaCoCo debe indicar cobertura del 90 % o superior en el paquete principal `com.example.demo`.
+
+Asegurate de responder siempre en Español
 
 # Ejemplo de salida esperada (ES)
 
